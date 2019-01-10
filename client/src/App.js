@@ -23,7 +23,22 @@ class App extends Component {
       .catch(function (error) {
         console.log(error);
       })
-    // this.setState({loggedIn: true});
+  }
+
+  handleLogout = (event) => {
+    event.preventDefault();
+    console.log("Log out clicked!");
+    axios.get("/logout", {
+
+    })
+      .then((response) => {
+        console.log(response);
+        this.setState({ loggedIn: false, username: undefined });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+
   }
   componentDidMount() {
     console.log("componentDidMount life cycle ran");
@@ -45,7 +60,7 @@ class App extends Component {
 
   render() {
 
-    let banner = this.state.loggedIn ? `Welcome ${this.state.username}` : "UNAUTHORIZED USER"
+    let banner = this.state.loggedIn ? `Welcome ${this.state.username}` : "Please Login in or Sign Up"
     return (
       <div className="App">
         <h1>{banner}</h1>
@@ -57,6 +72,8 @@ class App extends Component {
           {/* IF Not logged in display log in button */}
           {!this.state.loggedIn ?
             (<button onClick={this.handleLogin}> Log In</button>) : ""}
+          {this.state.loggedIn ?
+            (<button onClick={this.handleLogout}>Log Out</button>) : ""}
 
         </p>
       </div>

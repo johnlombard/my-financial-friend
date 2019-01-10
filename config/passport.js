@@ -19,7 +19,7 @@ passport.use(new LocalStrategy(
         });
       }
       // If there is a user with the given username, but the password the user gives us is incorrect
-    //   CHANGE THIS! THIS IS NOT SAFE!!!
+    //   CHANGE THIS! THIS IS NOT SAFE!!!**************
       else if (dbUser.password != password) { 
         return done(null, false, {
           message: "Incorrect password."
