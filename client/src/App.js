@@ -13,26 +13,39 @@ class App extends Component {
     event.preventDefault();
     console.log("Login clicked!");
     axios.post("/login", {
-      username: 'postworked',
+      username: 'admin',
       password: 'password'
     })
-    .then(function(response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
+      .then((response) => {
+        console.log(response);
+        this.setState({ loggedIn: true, username: response.data.username });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
     // this.setState({loggedIn: true});
   }
   componentDidMount() {
     console.log("componentDidMount life cycle ran");
-    axios.get("allusers")
-      .then(response => { console.log(response) });
+
+    // axios.get("allusers")
+    //   .then(response => { console.log(response) });
+    // Check session data to see if user should be logged in
+
+    axios.get("/user_data")
+      .then(response => {
+        console.log(response);
+        if (response.data.loggedIn) {
+          this.setState({ loggedIn: true, username: response.data.username })
+        } else {
+          console.log("No logged in user");
+        }
+      });
   }
 
   render() {
 
-    let banner = this.state.loggedIn ? "You're logged in!" : "UNAUTHORIZED USER"
+    let banner = this.state.loggedIn ? `Welcome ${this.state.username}` : "UNAUTHORIZED USER"
     return (
       <div className="App">
         <h1>{banner}</h1>
@@ -41,7 +54,9 @@ class App extends Component {
           <h2>Welcome to My Financial Friend!</h2>
         </div>
         <p className="App-intro">
-          <button onClick={this.handleLogin}> Log In</button>
+          {/* IF Not logged in display log in button */}
+          {!this.state.loggedIn ?
+            (<button onClick={this.handleLogin}> Log In</button>) : ""}
 
         </p>
       </div>
