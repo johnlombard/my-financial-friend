@@ -12,7 +12,17 @@ class App extends Component {
   handleLogin = (event) => {
     event.preventDefault();
     console.log("Login clicked!");
-    this.setState({loggedIn: true});
+    axios.post("/login", {
+      username: 'postworked',
+      password: 'password'
+    })
+    .then(function(response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+    // this.setState({loggedIn: true});
   }
   componentDidMount() {
     console.log("componentDidMount life cycle ran");

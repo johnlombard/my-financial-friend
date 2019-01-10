@@ -3,11 +3,21 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+//  middleware for parsing body on post request
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 //Connecting to the DB
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/my-financial-friend");
 const db = require("./models");
+
+// Login post route
+app.post("/login", function(req, res) {
+  console.log("log route has been hit");
+  console.log(req.body)
+  res.json({loggenIn: true});
+})
 
 // All user test routes
 app.get("/allusers", function(req, res) {
