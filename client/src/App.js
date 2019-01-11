@@ -67,6 +67,20 @@ class App extends Component {
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to My Financial Friend!</h2>
+
+          {/* <form action="/login" method="post">
+            <div>
+              <label>Username:</label>
+              <input type="text" name="username" />
+            </div>
+            <div>
+              <label>Password:</label>
+              <input type="password" name="password" />
+            </div>
+            <div>
+              <input type="submit" value="Log In" />
+            </div>
+          </form> */}
         </div>
         <p className="App-intro">
           {/* IF Not logged in display log in button */}
