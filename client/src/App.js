@@ -1,7 +1,11 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import axios from "axios";
+
+// import API from "./utils/API"
 import "./App.css";
+// import Portfolio from "./components/PortfolioContainer";
+import Home from "./components/Home/Home";
+import Dash from "./components/Dash";
 
 class App extends Component {
 
@@ -9,9 +13,14 @@ class App extends Component {
     loggedIn: false
   };
 
+
+
+
   handleLogin = (event) => {
     event.preventDefault();
     console.log("Login clicked!");
+
+    // When Log in is clicked this is being posted 
     axios.post("/login", {
       username: 'admin',
       password: 'password'
@@ -56,8 +65,18 @@ class App extends Component {
           console.log("No logged in user");
         }
       });
-  }
+  };
 
+  renderPage = () => {
+    if (this.state.loggedIn === false) {
+      return <Home />;
+    } else {
+      return <Dash />;
+    }
+  };
+
+
+  
   render() {
 
     let banner = this.state.loggedIn ? `Welcome ${this.state.username}` : "Please Login in or Sign Up"
@@ -65,22 +84,9 @@ class App extends Component {
       <div className="App">
         <h1>{banner}</h1>
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to My Financial Friend!</h2>
+          <h2>Welcome to My Financial Friend!</h2> 
 
-          {/* <form action="/login" method="post">
-            <div>
-              <label>Username:</label>
-              <input type="text" name="username" />
-            </div>
-            <div>
-              <label>Password:</label>
-              <input type="password" name="password" />
-            </div>
-            <div>
-              <input type="submit" value="Log In" />
-            </div>
-          </form> */}
+            
         </div>
         <p className="App-intro">
           {/* IF Not logged in display log in button */}
@@ -88,8 +94,10 @@ class App extends Component {
             (<button onClick={this.handleLogin}> Log In</button>) : ""}
           {this.state.loggedIn ?
             (<button onClick={this.handleLogout}>Log Out</button>) : ""}
-
         </p>
+
+{this.renderPage()}
+        {/* <Portfolio/>   */}
       </div>
     );
   }
