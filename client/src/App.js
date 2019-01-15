@@ -7,6 +7,15 @@ import "./App.css";
 import Home from "./components/Home/Home";
 import Dash from "./components/Dash";
 
+
+
+const styles = {
+  app: {
+    fontFamily: "'Josefin Sans', sans-serif"
+
+  },
+  
+};
 class App extends Component {
 
   state = {
@@ -81,7 +90,7 @@ class App extends Component {
 
     let banner = this.state.loggedIn ? `Welcome ${this.state.username}` : "Please Login in or Sign Up"
     return (
-      <div className="App">
+      <div style={styles.app} className="App">
         <h1>{banner}</h1>
         <div className="App-header">
           <h2>Welcome to My Financial Friend!</h2> 
