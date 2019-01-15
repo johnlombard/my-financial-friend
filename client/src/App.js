@@ -4,7 +4,8 @@ import axios from "axios";
 // import API from "./utils/API"
 import "./App.css";
 // import Portfolio from "./components/PortfolioContainer";
-import Home from "./components/Home/Home";
+import Nav from "./components/Nav";
+import Home from "./components/Home";
 import Dash from "./components/Dash";
 
 
@@ -104,7 +105,7 @@ class App extends Component {
           {this.state.loggedIn ?
             (<button onClick={this.handleLogout}>Log Out</button>) : ""}
         </p>
-
+<Nav/>
 {this.renderPage()}
         {/* <Portfolio/>   */}
       </div>
