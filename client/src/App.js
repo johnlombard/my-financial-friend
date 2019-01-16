@@ -32,8 +32,8 @@ class App extends Component {
 
     // When Log in is clicked this is being posted 
     axios.post("/login", {
-      username: 'admin',
-      password: 'password'
+      username: 'Jawn',
+      password: 'Safety'
     })
       .then((response) => {
         console.log(response);
