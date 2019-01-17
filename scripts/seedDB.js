@@ -46,23 +46,23 @@ db.Holding
     .remove({})
     .then(() => db.Holding.collection.insertMany(holdingSeed))
     .then(data => {
-        console.log(data.result.n + " records inserted!");
-        process.exit(0);
-    })
-    .catch(err => {
-        console.error(err);
-        process.exit(1);
-    });
-
-// 
+            console.log(data.result.n + " records inserted!");
+            process.exit(0);
+        })
+        .catch(err => {
+            console.error(err);
+            process.exit(1);
+        });
 
 
-// addHolding = (userId, holding) {
+
+
+// const addHolding = (user, holding) => {
 //     // get the user
-//     let user = db.User.find();
 //     // add the holding
-//     user.holdings.push(holding);
-//     // save the user
-// }
+//     db.User.update({username: "Jawn"}, {$push: {holdings:[{ticker:aapl}, {quantity: 10}]}})
 
-// addHolding(13092830129, { ticker: "amzn", qty: 10});
+//     // save the user
+// };
+
+// addHolding(,);

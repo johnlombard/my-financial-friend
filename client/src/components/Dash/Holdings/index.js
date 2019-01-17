@@ -1,1 +1,1 @@
-export { default } from "./Holding";
+export { default } from "./Holdings";
