@@ -4,8 +4,8 @@ import axios from "axios";
 // import API from "./utils/API"
 import "./App.css";
 import Nav from "./components/Nav";
-import Home from "./components/Home";
-import Dash from "./components/Dash";
+import Home from "./pages/Home";
+import Dash from "./pages/Dash";
 
 
 

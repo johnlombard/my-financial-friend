@@ -1,5 +1,5 @@
 const express = require("express");
-var session = require("express-session");
+const session = require("express-session");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
