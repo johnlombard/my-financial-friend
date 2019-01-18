@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-// import API from "./utils/API"
+import API from "./utils/API"
 import "./App.css";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Dash from "./pages/Dash";
+
 
 
 
@@ -85,6 +86,8 @@ class App extends Component {
 
   // -----------------------------------------------------------------------
 
+
+
   // -----------------------------------------------------------------------
   // Handling the API
   handleAPI = event => {
@@ -118,20 +121,27 @@ class App extends Component {
     console.log(this.state);
   }
 
+  // TRYING TO LOAD DATA FROM MONGO
+  loadHoldings = () => {
+    API.getHoldings()
+      .then(res => this.setState({ holdings: res.data}))
+      .catch(err => console.log(err));
+  };
+
 
   render() {
     return (
       <div style={styles.app} className="App">
-        <Nav 
+        <Nav
           username={this.username}
           state={this.state}
           handleLogin={this.handleLogin}
           handleLogout={this.handleLogout}
           handleClick={this.handleClick} />
-          
+
         {this.renderPage()}
 
-
+        
       </div>
     );
   }

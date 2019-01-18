@@ -24,7 +24,7 @@ app.use(passport.session());
 
 //Login post route
 // TODO: REMOVE OLD ROUTE
-app.post("/login", passport.authenticate("local"),  (req, res) => {
+app.post("/login", passport.authenticate("local"), (req, res) => {
   // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
   // So we're sending the user back the route to the members page because the redirect will happen on the front end
   // They won't get this or even be able to access this page if they aren't authed
@@ -47,7 +47,7 @@ app.get("/logout", (req, res) => {
 app.get("/user_data", function (req, res) {
   if (!req.user) {
     // The user is not logged in, send back an empty object
-    res.json({loggedIn: false});
+    res.json({ loggedIn: false });
   }
   else {
     // Otherwise send back the user's email and id
@@ -71,6 +71,52 @@ app.get("/allusers", function (req, res) {
   // res.json({routeHit: true})
 })
 
+
+// Getting Users
+app.get("/users", function (req, res) {
+  console.log("All holdings route was hit!");
+  // Getting all holdings and send them back in a json blob
+  db.User
+    .find(req.query)
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+
+  // res.json({routeHit: true})
+})
+
+// Getting Users
+app.get("/users/:id", function (req, res) {
+  console.log("All holdings route was hit!");
+  // Getting all holdings and send them back in a json blob
+  db.User
+    .findById(req.params.id)
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+
+  // res.json({routeHit: true})
+})
+
+app.get("/holdings", function (req, res) {
+  console.log("All holdings route was hit!");
+  // Getting all holdings and send them back in a json blob
+  db.Holding
+    .find(req.query)
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+
+  // res.json({routeHit: true})
+})
+
+app.get("/holdings/:id", function (req, res) {
+  console.log("Holding id route was hit!");
+  // Getting all holdings and send them back in a json blob
+  db.Holding
+    .findById(req.params.id)
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+
+  // res.json({routeHit: true})
+})
 
 
 // Serve up static assets (usually on heroku)
