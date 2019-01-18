@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Input, FormBtn } from './Search/Search';
-import {List, ListItem} from './List';
+import { List, ListItem } from './List';
 
 const styles = {
   Holdings: {
@@ -9,20 +9,23 @@ const styles = {
 
   },
 };
+
 class Holdings extends Component {
   // companyName, symbol, latestPrice, change, week52High "week52Low" "ytdChange": 
   state = {
     StockTicker: "", //What is typed in input line
     stock: "", //Response from external API
     holdings: [],
-    companyName: "",
-    symbol: "",
-    latestPrice: null,
-    change: null,
-    week52High: null,
-    week52Low: null,
-    ytdChange: null,
-
+    stockInfo: [{
+      // companyName: "",
+      // symbol: "",
+      // latestPrice: null,
+      // latestPrice: null,
+      // change: null,
+      // week52High: null,
+      // week52Low: null,
+      // ytdChange: null,
+    }],
   };
 
   // FORM SUBMIT
@@ -39,7 +42,7 @@ class Holdings extends Component {
       [name]: value
     });
   };
-  
+
   // Handling the API for the stock search
   handleStockSearch = event => {
     axios
@@ -47,8 +50,7 @@ class Holdings extends Component {
       .then((response) => {
         console.log(response.data);
         // companyName, symbol, latestPrice, change, week52High "week52Low" "ytdChange": 
-  
-        this.setState({ stock: response.data.companyName });
+        this.setState({stockInfo: response.data});
       })
       .catch(function (error) {
         console.log(error);
@@ -58,18 +60,18 @@ class Holdings extends Component {
   // Get User Holding
   loadHoldings = () => {
     axios.get("/holdings")
-    .then(response => {
-      console.log(response);
+      .then(response => {
+        console.log(response);
         this.setState({ holdings: response.data })
-      
-    });
+
+      });
     // API.getHoldings()
     //   .then(res => this.setState({ holdings: res.data }))
     //   .catch(err => console.log(err));
   };
 
   render() {
-    let stock = this.state.stock;
+    let stock = this.state.stockInfo.companyName;
     // let quantity = this.state.QuantityOwned;
     return (
       <div style={styles.Holdings} className="Holding">
@@ -94,13 +96,15 @@ class Holdings extends Component {
           <ListItem key={holding._id}>
             <h1 href={"/holdings/" + holding._id}>
               <strong>
-               You own {holding.quantity} shares of {holding.ticker}  
+                You own {holding.quantity} shares of {holding.ticker}
               </strong>
             </h1>
 
           </ListItem>
         ))}
         </List>
+        <button onClick={this.handleSubmit}>SEE STATE</button>
+
       </div>
     );
   }
