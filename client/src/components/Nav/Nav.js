@@ -15,8 +15,8 @@ const Nav = props => (
                     {/* SIGN IN FORm */}
                     {!props.state.loggedIn ?
                         (<form className="signup">
-                            <input placeholder="User Name" name="usernameInput" value={props.usernameTest} onChange={props.handleUsername} className="form" />
-                            <input className="form" />
+                            <input placeholder="UserName" name="usernameInput" value={props.usernameTest} onChange={props.handleFormLogin} className="form" />
+                            <input placeholder="Password" name="passwordInput" value={props.passwordTest} onChange={props.handleFormLogin} className="form" />
                             <button onClick={props.handleClick}>Login in</button>
                         </form>) : ""}
 

@@ -39,7 +39,7 @@ class App extends Component {
         console.log(error);
       })
   }
-  handleUsername = (event) => {
+  handleFormLogin = (event) => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -141,7 +141,7 @@ class App extends Component {
           handleLogin={this.handleLogin}
           handleLogout={this.handleLogout}
           handleClick={this.handleClick}
-          handleUsername={this.handleUsername}
+          handleFormLogin={this.handleFormLogin}
         />
 
         {/* If Logged in, display User Dash */}
