@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Input, FormBtn } from './Search/Search';
 import { List, ListItem } from './List';
+import Chart from './Chart'
 
 // const styles = {
 //   Holdings: {
@@ -158,8 +159,8 @@ class Holdings extends Component {
 
 
     return (
-      <div style={{backgroundColor: this.state.bgColor}} className="Holding">
-        {/* ---------------------FORM SUBMITTING------------------------ */}
+      <div style={{ backgroundColor: this.state.bgColor }} className="Holding">
+        {/* ---------------------Search BEGINs------------------------ */}
         <form onSubmit={this.handleSubmit}>
           <Input
             value={this.state.StockTicker}
@@ -170,12 +171,10 @@ class Holdings extends Component {
           <FormBtn
             // disabled={!(this.state.author && this.state.title)}
             onClick={this.handleStockSearch}
-          ></FormBtn> 
+          ></FormBtn>
           <button onClick={this.loadDBHoldings}>LOAD HOLDINGS</button>
           <button onClick={this.loadAPIHoldings}>LOAD API HOLDINGS</button>
         </form>
-
-
         {/* CHANGE TO MODAL MAP THROUGH */}
         <h1>Company: {searchResults[0]}</h1>
         <h1>Ticker: {searchResults[1]}</h1>
@@ -184,24 +183,35 @@ class Holdings extends Component {
         <h1>52 Week High: {searchResults[4]}</h1>
         <h1>52 Week Low: {searchResults[5]}</h1>
         <h1>YTD Change: {searchResults[6]}</h1>
+        {/* ---------------------Search ENDS------------------------ */}
 
-
+        {/* ---------------------USER HOLDINGS BEGIN ------------------------ */}
         <List> {this.state.holdings.map(holding => (
           <ListItem key={holding._id}>
             <h1 href={"/holdings/" + holding._id}>
-              <strong> 
+              <strong>
                 You own {holding.quantity} shares of {holding.ticker} ///
                 This position is worth {Number(holding.quantity * apiHolding[2]).toFixed(2)}
               </strong>
             </h1>
             {/* MAP THROUGH THIS  Holding QTY * PRICE WILL NOT LOAD UNTIL HOLDINGS ARE LOADED*/}
             <h1>Total Portfolio is worth {Number((this.state.holdings[0].quantity * apiHolding[2]) + (this.state.holdings[1].quantity * apiHolding[2])).toFixed(2)}</h1>
-
           </ListItem>
         ))}
-
         </List>
-          {/* <button onClick={this.percentageColor}>color</button> */}
+        {/* ---------------------USER HOLDINGS END ------------------------ */}
+
+        {/* --------------------- HOLDINGS CHART BEGIN ------------------------ */}
+
+          <Chart data={[5, 2, 7, 1, 1, 3, 4, 9]}/>
+
+        {/* --------------------- HOLDINGS CHART END ------------------------ */}
+        
+        
+        
+        
+        
+        {/* <button onClick={this.percentageColor}>color</button> */}
         <button onClick={this.handleSubmit}>SEE STATE</button>
 
       </div>

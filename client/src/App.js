@@ -110,21 +110,21 @@ class App extends Component {
   };
 
 
-  handleNewUserSubmit = event => {
-    event.preventDefault();
-    if (this.state.newUser && this.state.newPassword) {
-      API.saveUser({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
-      })
-        .then(res => this.loadBooks())
-        .catch(err => console.log(err));
-    }
-  };
+  // handleNewUserSubmit = event => {
+  //   event.preventDefault();
+  //   if (this.state.newUser && this.state.newPassword) {
+  //     API.saveUser({
+  //       title: this.state.title,
+  //       author: this.state.author,
+  //       synopsis: this.state.synopsis
+  //     })
+  //       .then(res => this.loadBooks())
+  //       .catch(err => console.log(err));
+  //   }
+  // };
 
 
-  render() {
+  render(props) {
     return (
       <div style={styles.app} className="App">
         <Nav
@@ -142,11 +142,11 @@ class App extends Component {
 
 
         {/* Creating a new user Form */}
-        <form>
-          <input></input>
-          <input></input>
-          <button></button>
-        </form>
+        {/* <form className="signin">
+          <input placeholder="Create New User Name" name="newUserName"  onChange={this.handleFormLogin} className="form" />
+          <input placeholder="Password" name="newPassword"  onChange={this.handleFormLogin} className="form" />
+          <button onClick={this.handleClick}>SIGN UP</button>
+        </form> */}
 
 
       </div>

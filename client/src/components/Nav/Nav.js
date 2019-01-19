@@ -14,7 +14,7 @@ const Nav = props => (
                 <ul className="navbar-nav ">
                     {/* SIGN IN FORm */}
                     {!props.state.loggedIn ?
-                        (<form className="signup">
+                        (<form className="signin">
                             <input placeholder="UserName" name="usernameInput" value={props.usernameTest} onChange={props.handleFormLogin} className="form" />
                             <input placeholder="Password" name="passwordInput" value={props.passwordTest} onChange={props.handleFormLogin} className="form" />
                         </form>) : ""}
