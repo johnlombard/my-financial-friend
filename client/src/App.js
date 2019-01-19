@@ -20,16 +20,16 @@ class App extends Component {
 
   state = {
     loggedIn: false,
-    
-
   };
+
+
   handleLogin = (event) => {
     event.preventDefault();
     console.log("Login clicked!");
     // When Log in is clicked this is being posted 
     axios.post("/login", {
-      username: 'Jawn',
-      password: 'Safety'
+      username: this.state.usernameInput,
+      password: this.state.passwordInput
     })
       .then((response) => {
         console.log(response);
@@ -64,7 +64,6 @@ class App extends Component {
   componentDidMount() {
     console.log("componentDidMount life cycle ran");
     // Check session data to see if user should be logged in
-
     axios.get("/user_data")
       .then(response => {
         console.log(response);
@@ -76,8 +75,6 @@ class App extends Component {
       });
   };
 
-
-  // -----------------------------------------------------------------------
   // FORM SUBMIT
   handleSubmit = event => {
     alert('A name was submitted: ' + this.state.value);
@@ -89,27 +86,8 @@ class App extends Component {
     this.setState({ value: event.target.value });
   }
 
-  // -----------------------------------------------------------------------
 
-
-
-  // -----------------------------------------------------------------------
-  // Handling the API
-  handleAPI = event => {
-    axios
-      .get("https://api.iextrading.com/1.0/stock/aapl/company")
-      .then((response) => {
-        console.log(response.data.website);
-        // this.setState({stock: response.data});
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-  // -----------------------------------------------------------------------
-
-
-
+  // If the user is not logged in HOME is displayed, If User IS logged in personal dash is displayed 
   renderPage = () => {
     if (this.state.loggedIn === false) {
       return <Home />;
@@ -132,6 +110,20 @@ class App extends Component {
   };
 
 
+  handleNewUserSubmit = event => {
+    event.preventDefault();
+    if (this.state.newUser && this.state.newPassword) {
+      API.saveUser({
+        title: this.state.title,
+        author: this.state.author,
+        synopsis: this.state.synopsis
+      })
+        .then(res => this.loadBooks())
+        .catch(err => console.log(err));
+    }
+  };
+
+
   render() {
     return (
       <div style={styles.app} className="App">
@@ -146,6 +138,17 @@ class App extends Component {
 
         {/* If Logged in, display User Dash */}
         {this.renderPage()}
+
+
+
+        {/* Creating a new user Form */}
+        <form>
+          <input></input>
+          <input></input>
+          <button></button>
+        </form>
+
+
       </div>
     );
   }

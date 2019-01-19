@@ -3,16 +3,16 @@ import axios from 'axios';
 import { Input, FormBtn } from './Search/Search';
 import { List, ListItem } from './List';
 
-const styles = {
-  Holdings: {
-    backgroundColor: "red"
-
-  },
-};
+// const styles = {
+//   Holdings: {
+//     backgroundColor: "red"
+//   },
+// };
 
 // TODO:
 // -2 decimal places 
 // -map through arrays 
+// Add percent change (currently only have price Change)
 
 
 class Holdings extends Component {
@@ -39,12 +39,16 @@ class Holdings extends Component {
     apiWeek52High: null,
     apiWeek52Low: null,
     apiYtdChange: null,
+
+    // Positive or Negative Background of search 
+    bgColor: "yellow"
   };
 
   // FORM SUBMIT
   handleSubmit = event => {
     event.preventDefault();
     console.log(this.state)
+    // this.percentageColor();
 
   };
 
@@ -67,11 +71,11 @@ class Holdings extends Component {
         this.setState({
           searchCompanyName: response.data.companyName,
           searchSymbol: response.data.symbol,
-          searchLatestPrice: response.data.latestPrice,
-          searchChange: response.data.change,
-          searchWeek52High: response.data.week52High,
-          searchWeek52Low: response.data.week52Low,
-          searchYtdChange: response.data.ytdChange
+          searchLatestPrice: Number(response.data.latestPrice).toFixed(2),
+          searchChange: (Number(response.data.change).toFixed(2)),
+          searchWeek52High: Number(response.data.week52High).toFixed(2),
+          searchWeek52Low: Number(response.data.week52Low).toFixed(2),
+          searchYtdChange: `${(Number(response.data.ytdChange).toFixed(2) * 100)}% `
         });
       })
       .catch(function (error) {
@@ -114,6 +118,17 @@ class Holdings extends Component {
       });
   };
 
+  // If percent is positive change green
+  // searchChange is currently a STRING*******
+  // percentageColor = () => {
+  //   if (this.state.searchChange.includes("-")) {
+  //     this.state.bgColor = 'red'
+  //     alert("negative")
+  //   } else {
+  //     this.state.bgColor = 'green'
+  //     alert("posotive")
+  //   }
+  // }
 
 
 
@@ -143,7 +158,7 @@ class Holdings extends Component {
 
 
     return (
-      <div style={styles.Holdings} className="Holding">
+      <div style={{backgroundColor: this.state.bgColor}} className="Holding">
         {/* ---------------------FORM SUBMITTING------------------------ */}
         <form onSubmit={this.handleSubmit}>
           <Input
@@ -155,7 +170,7 @@ class Holdings extends Component {
           <FormBtn
             // disabled={!(this.state.author && this.state.title)}
             onClick={this.handleStockSearch}
-          ></FormBtn>
+          ></FormBtn> 
           <button onClick={this.loadDBHoldings}>LOAD HOLDINGS</button>
           <button onClick={this.loadAPIHoldings}>LOAD API HOLDINGS</button>
         </form>
@@ -165,7 +180,7 @@ class Holdings extends Component {
         <h1>Company: {searchResults[0]}</h1>
         <h1>Ticker: {searchResults[1]}</h1>
         <h1>Price: {searchResults[2]}</h1>
-        <h1>Percent Change: {searchResults[3]}</h1>
+        <h1>Price Change: {searchResults[3]}</h1>
         <h1>52 Week High: {searchResults[4]}</h1>
         <h1>52 Week Low: {searchResults[5]}</h1>
         <h1>YTD Change: {searchResults[6]}</h1>
@@ -174,19 +189,19 @@ class Holdings extends Component {
         <List> {this.state.holdings.map(holding => (
           <ListItem key={holding._id}>
             <h1 href={"/holdings/" + holding._id}>
-              <strong>
-                You own {holding.quantity} shares of {holding.ticker}///
-                This position is worth {holding.quantity * apiHolding[2]}
+              <strong> 
+                You own {holding.quantity} shares of {holding.ticker} ///
+                This position is worth {Number(holding.quantity * apiHolding[2]).toFixed(2)}
               </strong>
             </h1>
             {/* MAP THROUGH THIS  Holding QTY * PRICE WILL NOT LOAD UNTIL HOLDINGS ARE LOADED*/}
-            <h1>Total Portfolio is worth {(this.state.holdings[0].quantity * apiHolding[2]) + (this.state.holdings[1].quantity * apiHolding[2])}</h1>
+            <h1>Total Portfolio is worth {Number((this.state.holdings[0].quantity * apiHolding[2]) + (this.state.holdings[1].quantity * apiHolding[2])).toFixed(2)}</h1>
 
           </ListItem>
         ))}
 
         </List>
-
+          {/* <button onClick={this.percentageColor}>color</button> */}
         <button onClick={this.handleSubmit}>SEE STATE</button>
 
       </div>

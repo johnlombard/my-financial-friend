@@ -9,7 +9,7 @@ const Nav = props => (
             {/* <Signin />
             <Signup /> */}
             {/* If logged in display username if not please login in or sign up */}
-            <h1>{props.state.loggedIn ? (`Welcome ${props.state.username}`) : "Please Login in or Sign Up"}</h1>
+            <h4>{props.state.loggedIn ? (`Welcome ${props.state.username}`) : "Please Login in or Sign Up"}</h4>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav ">
                     {/* SIGN IN FORm */}
@@ -17,10 +17,7 @@ const Nav = props => (
                         (<form className="signup">
                             <input placeholder="UserName" name="usernameInput" value={props.usernameTest} onChange={props.handleFormLogin} className="form" />
                             <input placeholder="Password" name="passwordInput" value={props.passwordTest} onChange={props.handleFormLogin} className="form" />
-                            <button onClick={props.handleClick}>Login in</button>
                         </form>) : ""}
-
-
 
                     <li className="nav-item">
                         {/* IF Not logged in display log in button  */}
