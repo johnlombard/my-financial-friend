@@ -20,13 +20,12 @@ class App extends Component {
 
   state = {
     loggedIn: false,
-    // value: "",
-    // stock: ""
+    
+
   };
   handleLogin = (event) => {
     event.preventDefault();
     console.log("Login clicked!");
-
     // When Log in is clicked this is being posted 
     axios.post("/login", {
       username: 'Jawn',
@@ -39,6 +38,12 @@ class App extends Component {
       .catch(function (error) {
         console.log(error);
       })
+  }
+  handleUsername = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   }
 
   handleLogout = (event) => {
@@ -54,8 +59,8 @@ class App extends Component {
       .catch(function (error) {
         console.log(error);
       })
-
   }
+
   componentDidMount() {
     console.log("componentDidMount life cycle ran");
     // Check session data to see if user should be logged in
@@ -94,9 +99,7 @@ class App extends Component {
     axios
       .get("https://api.iextrading.com/1.0/stock/aapl/company")
       .then((response) => {
-
         console.log(response.data.website);
-
         // this.setState({stock: response.data});
       })
       .catch(function (error) {
@@ -124,7 +127,7 @@ class App extends Component {
   // TRYING TO LOAD DATA FROM MONGO
   loadHoldings = () => {
     API.getHoldings()
-      .then(res => this.setState({ holdings: res.data}))
+      .then(res => this.setState({ holdings: res.data }))
       .catch(err => console.log(err));
   };
 
@@ -137,11 +140,12 @@ class App extends Component {
           state={this.state}
           handleLogin={this.handleLogin}
           handleLogout={this.handleLogout}
-          handleClick={this.handleClick} />
+          handleClick={this.handleClick}
+          handleUsername={this.handleUsername}
+        />
 
+        {/* If Logged in, display User Dash */}
         {this.renderPage()}
-
-        
       </div>
     );
   }

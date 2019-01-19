@@ -179,15 +179,14 @@ class Holdings extends Component {
                 This position is worth {holding.quantity * apiHolding[2]}
               </strong>
             </h1>
-            {/* MAP THROUGH THIS  Holding QTY * PRICE WILL NOT LOAD UNTIL HOLDINGS ARE LOADED*/} 
-        <h1>Total Portfolio is worth {(this.state.holdings[0].quantity * apiHolding[2]) + (this.state.holdings[1].quantity * apiHolding[2])}</h1>
-        
+            {/* MAP THROUGH THIS  Holding QTY * PRICE WILL NOT LOAD UNTIL HOLDINGS ARE LOADED*/}
+            <h1>Total Portfolio is worth {(this.state.holdings[0].quantity * apiHolding[2]) + (this.state.holdings[1].quantity * apiHolding[2])}</h1>
 
           </ListItem>
         ))}
-        
+
         </List>
-        
+
         <button onClick={this.handleSubmit}>SEE STATE</button>
 
       </div>
