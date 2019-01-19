@@ -10,28 +10,42 @@ const styles = {
   },
 };
 
+// TODO:
+// -2 decimal places 
+// -map through arrays 
+
+
 class Holdings extends Component {
   // companyName, symbol, latestPrice, change, week52High "week52Low" "ytdChange": 
   state = {
     StockTicker: "", //What is typed in input line
     stock: "", //Response from external API
     holdings: [],
-    stockInfo: [{
-      // companyName: "",
-      // symbol: "",
-      // latestPrice: null,
-      // latestPrice: null,
-      // change: null,
-      // week52High: null,
-      // week52Low: null,
-      // ytdChange: null,
-    }],
+
+    // Searched Stock Information
+    searchCompanyName: null,
+    searchSymbol: null,
+    searchLatestPrice: null,
+    searchChange: null,
+    searchWeek52High: null,
+    searchWeek52Low: "",
+    searchYtdChange: "",
+
+    // Holdings from DB Linked to IEX
+    apiCompanyName: null,
+    apiSymbol: null,
+    apiLatestPrice: null,
+    apiChange: null,
+    apiWeek52High: null,
+    apiWeek52Low: null,
+    apiYtdChange: null,
   };
 
   // FORM SUBMIT
   handleSubmit = event => {
     event.preventDefault();
     console.log(this.state)
+
   };
 
   // Stock Search
@@ -50,29 +64,84 @@ class Holdings extends Component {
       .then((response) => {
         console.log(response.data);
         // companyName, symbol, latestPrice, change, week52High "week52Low" "ytdChange": 
-        this.setState({stockInfo: response.data});
+        this.setState({
+          searchCompanyName: response.data.companyName,
+          searchSymbol: response.data.symbol,
+          searchLatestPrice: response.data.latestPrice,
+          searchChange: response.data.change,
+          searchWeek52High: response.data.week52High,
+          searchWeek52Low: response.data.week52Low,
+          searchYtdChange: response.data.ytdChange
+        });
       })
       .catch(function (error) {
         console.log(error);
       });
   };
 
-  // Get User Holding
-  loadHoldings = () => {
+  // TODO Change percentages to be 2 decimal
+  // Change positive and negative to red or green
+
+  // Get User Holdings from DB
+  loadDBHoldings = () => {
     axios.get("/holdings")
       .then(response => {
         console.log(response);
         this.setState({ holdings: response.data })
-
       });
-    // API.getHoldings()
-    //   .then(res => this.setState({ holdings: res.data }))
-    //   .catch(err => console.log(err));
   };
 
+
+  // TODO Change percentages to be 2 decimal
+  // Change positive and negative to red or green
+  // Get User Holdings from API
+  loadAPIHoldings = () => {
+    axios
+      .get("https://api.iextrading.com/1.0/stock/" + this.state.holdings[0].ticker + "/quote")
+      .then((response) => {
+        this.setState({
+          apiCompanyName: response.data.companyName,
+          apiSymbol: response.data.symbol,
+          apiLatestPrice: response.data.latestPrice,
+          apiChange: response.data.change,
+          apiWeek52High: response.data.week52High,
+          apiWeek52Low: response.data.week52Low,
+          apiYtdChange: response.data.ytdChange
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+
+
+
+
   render() {
-    let stock = this.state.stockInfo.companyName;
-    // let quantity = this.state.QuantityOwned;
+
+
+    let searchResults = [
+      this.state.searchCompanyName,
+      this.state.searchSymbol,
+      this.state.searchLatestPrice,
+      this.state.searchChange,
+      this.state.searchWeek52High,
+      this.state.searchWeek52Low,
+      this.state.searchYtdChange
+    ];
+
+    let apiHolding = [
+      this.state.apiCompanyName,
+      this.state.apiSymbol,
+      this.state.apiLatestPrice,
+      this.state.apiChange,
+      this.state.apiWeek52High,
+      this.state.apiWeek52Low,
+      this.state.apiYtdChange
+    ];
+
+
     return (
       <div style={styles.Holdings} className="Holding">
         {/* ---------------------FORM SUBMITTING------------------------ */}
@@ -87,22 +156,38 @@ class Holdings extends Component {
             // disabled={!(this.state.author && this.state.title)}
             onClick={this.handleStockSearch}
           ></FormBtn>
-          <button onClick={this.loadHoldings}>LOAD HOLDINGS</button>
+          <button onClick={this.loadDBHoldings}>LOAD HOLDINGS</button>
+          <button onClick={this.loadAPIHoldings}>LOAD API HOLDINGS</button>
         </form>
 
-        <h1>You  of {stock}</h1>
+
+        {/* CHANGE TO MODAL MAP THROUGH */}
+        <h1>Company: {searchResults[0]}</h1>
+        <h1>Ticker: {searchResults[1]}</h1>
+        <h1>Price: {searchResults[2]}</h1>
+        <h1>Percent Change: {searchResults[3]}</h1>
+        <h1>52 Week High: {searchResults[4]}</h1>
+        <h1>52 Week Low: {searchResults[5]}</h1>
+        <h1>YTD Change: {searchResults[6]}</h1>
+
 
         <List> {this.state.holdings.map(holding => (
           <ListItem key={holding._id}>
             <h1 href={"/holdings/" + holding._id}>
               <strong>
-                You own {holding.quantity} shares of {holding.ticker}
+                You own {holding.quantity} shares of {holding.ticker}///
+                This position is worth {holding.quantity * apiHolding[2]}
               </strong>
             </h1>
+            {/* MAP THROUGH THIS  Holding QTY * PRICE WILL NOT LOAD UNTIL HOLDINGS ARE LOADED*/} 
+        <h1>Total Portfolio is worth {(this.state.holdings[0].quantity * apiHolding[2]) + (this.state.holdings[1].quantity * apiHolding[2])}</h1>
+        
 
           </ListItem>
         ))}
+        
         </List>
+        
         <button onClick={this.handleSubmit}>SEE STATE</button>
 
       </div>
