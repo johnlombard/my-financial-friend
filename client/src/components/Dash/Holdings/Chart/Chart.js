@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import Pie from './Pie'
 class Chart extends React.Component {
     render() {
@@ -22,6 +23,7 @@ class Chart extends React.Component {
                 <svg width="100%" height="100%">
                     {/* We'll create this component in a minute */}
                     <Pie x={x} y={y} radius={radius} data={this.props.data} />
+                    <Pie/>
                 </svg>
             </div>
         );

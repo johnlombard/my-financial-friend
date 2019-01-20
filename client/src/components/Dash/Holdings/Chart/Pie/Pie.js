@@ -1,32 +1,42 @@
-class Pie extends React.Component {
-    constructor(props) {
-      super(props);
-      // https://github.com/d3/d3/wiki/Ordinal-Scales#category10
-      this.colorScale = d3.scale.category10();
-      this.renderSlice = this.renderSlice.bind(this);
-    }
-  
-    render() {
-      let {x, y, data} = this.props;
-      // https://github.com/d3/d3/wiki/Pie-Layout
-      let pie = d3.layout.pie();
-      return (
-        <g transform={`translate(${x}, ${y})`}>
-          {/* Render a slice for each data point */}
-          {pie(data).map(this.renderSlice)}
-        </g>
-      );
-    }
-  
-    renderSlice(value, i) {
-      // We'll create this component in a minute
-      return (
-        <Slice key={i}
-               outerRadius={this.props.radius}
-               value={value}
-               fill={this.colorScale(i)} />
-      );
-    }
-  }
+import React, { Component } from 'react';
+import * as d3 from 'd3'
+import DonutChart from 'react-d3-donut';
 
-  export default Chart; 
+
+class Pie extends React.Component {
+    state = {
+        data: [
+
+            {
+                count: 20,       // Value of the property. Required.
+                color: "red",  // Color code for the pie's color. Required.
+                name: 'My name' // Optional value. Used to display in the tooltip.
+            },
+            {
+                count: 120,       // Value of the property. Required.
+                color: "green",  // Color code for the pie's color. Required.
+                name: ' name' // Optional value. Used to display in the tooltip.
+            },
+
+
+
+        ]
+    }
+
+
+
+    render() {
+        return (
+            <DonutChart
+                innerRadius={0}
+                outerRadius={100}
+                transition={false}
+                svgClass="example4"
+                pieClass="pie4"
+                displayTooltip={false}
+                strokeWidth={3}
+                data={this.state.data} />
+        )
+    }
+}
+export default Pie; 

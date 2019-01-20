@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+
 import axios from 'axios';
 import { Input, FormBtn } from './Search/Search';
 import { List, ListItem } from './List';
 import Chart from './Chart'
+
+
 
 // const styles = {
 //   Holdings: {
@@ -204,6 +207,8 @@ class Holdings extends Component {
         {/* --------------------- HOLDINGS CHART BEGIN ------------------------ */}
 
           <Chart data={[5, 2, 7, 1, 1, 3, 4, 9]}/>
+          <Chart/>
+          
 
         {/* --------------------- HOLDINGS CHART END ------------------------ */}
         

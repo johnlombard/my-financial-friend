@@ -6,6 +6,7 @@ import "./App.css";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Dash from "./pages/Dash";
+import Pie from './components/Dash/Holdings/Chart/Pie'
 
 
 
@@ -147,7 +148,7 @@ class App extends Component {
           <input placeholder="Password" name="newPassword"  onChange={this.handleFormLogin} className="form" />
           <button onClick={this.handleClick}>SIGN UP</button>
         </form> */}
-
+<Pie/>
 
       </div>
     );
