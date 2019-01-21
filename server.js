@@ -1,6 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const path = require("path");
+const routes = require("./routes");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -59,18 +60,8 @@ app.get("/user_data", function (req, res) {
   }
 });
 
-// All user test routes
-app.get("/allusers", function (req, res) {
-  console.log("All users route was hit!");
-  // Getting all users and send them back in a json blob
-  db.User
-    .find(req.query)
-    .then(dbModel => res.json(dbModel))
-    .catch(err => res.status(422).json(err));
-
-  // res.json({routeHit: true})
-})
-
+// Add routes, both API and view
+app.use(routes);
 
 // Getting Users
 app.get("/users", function (req, res) {
@@ -107,6 +98,21 @@ app.get("/holdings", function (req, res) {
   // res.json({routeHit: true})
 })
 
+
+
+
+// ******************************
+app.post("/holdings", function (req, res) {
+  console.log("Holding post route was hit!");
+  // Getting all holdings and send them back in a json blob
+  db.Holding
+    .create(req.params)
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+
+  // res.json({routeHit: true})
+})
+
 app.get("/holdings/:id", function (req, res) {
   console.log("Holding id route was hit!");
   // Getting all holdings and send them back in a json blob
@@ -119,10 +125,11 @@ app.get("/holdings/:id", function (req, res) {
 })
 
 
+
+
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
-}
+
 
 // Send every request to the React app
 // Define any API routes before this runs

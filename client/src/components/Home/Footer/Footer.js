@@ -19,7 +19,7 @@ function Footer(props) {
             <div className="card-body">
                 <h5 className="card-title">Special title treatment</h5>
                 <p className="card-text">Photos by Vladislav Reshetnyak, Tatiana Fet, and Lorenzo Cafaro from Pexels</p>
-                <a href="#" className="btn btn-success">Go somewhere</a>
+                <a href="/test" className="btn btn-success">Go somewhere</a>
             </div>
         </div>
 

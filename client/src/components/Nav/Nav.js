@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 
 const Nav = props => (
     < header >
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a className="navbar-brand col-3">My Financial Friend</a>
+            <a  href="test"className="navbar-brand col-3">My Financial Friend</a>
             {/* <Signin />
             <Signup /> */}
             {/* If logged in display username if not please login in or sign up */}
@@ -16,7 +16,7 @@ const Nav = props => (
                     {!props.state.loggedIn ?
                         (<form className="signin">
                             <input placeholder="UserName" name="usernameInput" value={props.usernameTest} onChange={props.handleFormLogin} className="form" />
-                            <input placeholder="Password" name="passwordInput" value={props.passwordTest} onChange={props.handleFormLogin} className="form" />
+                            <input  type="password" placeholder="Password" name="passwordInput" value={props.passwordTest} onChange={props.handleFormLogin} className="form" />
                         </form>) : ""}
 
                     <li className="nav-item">

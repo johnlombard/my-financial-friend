@@ -6,7 +6,6 @@ import "./App.css";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Dash from "./pages/Dash";
-import Pie from './components/Dash/Holdings/Chart/Pie'
 
 
 
@@ -63,11 +62,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount life cycle ran");
     // Check session data to see if user should be logged in
     axios.get("/user_data")
       .then(response => {
-        console.log(response);
         if (response.data.loggedIn) {
           this.setState({ loggedIn: true, username: response.data.username })
         } else {
@@ -93,7 +90,11 @@ class App extends Component {
     if (this.state.loggedIn === false) {
       return <Home />;
     } else {
-      return <Dash />;
+      return (
+      // this.loadHoldings(),
+      // this.loadAPIHoldings(),
+      <Dash/>
+      )
     }
   };
 
@@ -148,7 +149,7 @@ class App extends Component {
           <input placeholder="Password" name="newPassword"  onChange={this.handleFormLogin} className="form" />
           <button onClick={this.handleClick}>SIGN UP</button>
         </form> */}
-<Pie/>
+
 
       </div>
     );

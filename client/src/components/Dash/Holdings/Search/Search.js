@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 
 
@@ -15,5 +15,21 @@ export function FormBtn(props) {
     <button {...props} className="btn btn-success">Submit
      
     </button>
+  );
+}
+
+export function AddQuantityToHoldingsForm(props) {
+  return (
+    <div className="form">
+    <h1>Db on my flex</h1>
+      <input type="number" name="quantity" min="1" className="form" {...props} />
+    </div>
+  );
+}
+
+export function AddQuantityToHoldingsButton(props) {
+  return (
+      <button type="submit" {...props} className="btn btn-success">Add to your Portfolio
+     </button>
   );
 }
