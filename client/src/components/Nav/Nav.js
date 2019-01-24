@@ -8,6 +8,9 @@ const styles = {
     signInBtn: {
         marginLeft: 35
     },
+    welcome: {
+        margin: "auto"
+    }
 };
 
 const Nav = props => (
@@ -41,7 +44,7 @@ const Nav = props => (
                 </div>
             </div>
         </nav>
-        <h3 className="text-success navbar-text " >{props.state.loggedIn ? (`Welcome ${props.state.username}`) : "Please Sign in or Get Started"}</h3>
+        <h3 style={styles.welcome} className="text-success navbar-text " >{props.state.loggedIn ? (`Welcome ${props.state.username}`) : "Please Sign in or Get Started"}</h3>
     </header >
 );
 export default Nav;

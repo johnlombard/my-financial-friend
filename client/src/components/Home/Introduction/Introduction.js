@@ -11,12 +11,13 @@ const styles = {
         marginLeft: 0,
     },
     introDiv: {
-        padding: "5%"
+        marginTop: -120,
+        marginBotton: "1%"
     }
 };
 function Introduction(props) {
     return (
-    <div style={styles.introDiv} className="introduction">
+    <div style={styles.introDiv} className="introduction row">
         <div className="container">
             <div className="row">
                 <div className="col-md-8">

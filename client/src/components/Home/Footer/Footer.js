@@ -9,6 +9,9 @@ const styles = {
         backgroundColor: "red",
         textAlign: "center",
     },
+    icon: {
+        color: "black"
+    }
 };
 function Footer(props) {
     return (<div style={styles.footer} className="footer">
@@ -22,13 +25,13 @@ function Footer(props) {
                 <ul className="list-inline social-buttons">
               <li className="list-inline-item">
                 <a target = "_blank" rel="noopener noreferrer" href="https://github.com/johnlombard">
-                  <i className="fab fa-github"></i>
+                  <i style={styles.icon} className="fab fa-github"></i>
                 </a>
               </li>
      
               <li className="list-inline-item">
                 <a target = "_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/johnlombard1996/">
-                  <i className="fab fa-linkedin-in"></i>
+                  <i style={styles.icon}className="fab fa-linkedin-in"></i>
                 </a>
               </li>
               </ul>

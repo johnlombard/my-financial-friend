@@ -3,7 +3,7 @@ import IntroImg from './ben.jpg'
 
 const styles = {
     introImg: {
-    
+    height: "80%",
         width: "100%",
     },
     introImgText: {
@@ -20,9 +20,9 @@ const styles = {
 };
 function Header(props) {
     return (
-        <div className="Header">
-            <section className="jumbotron-fluid">
-                <img style={styles.introImg} src={IntroImg} alt="Dollar" data-sizes="(max-width: 540px) 540px, (max-width: 768px) 768px, (max-width: 980px) 980px, (max-width: 1200px) 1200px, 100vw" sizes="(max-width: 540px) 540px, (max-width: 768px) 768px, (max-width: 980px) 980px, (max-width: 1200px) 1200px, 100vw"
+        <div className="Header row">
+            <section className="col-12">
+                <img style={styles.introImg} src={IntroImg} alt="Dollar" data-sizes="(max-width: 540px) 540px, (max-width: 768px) 768px, (max-width: 980px) 980px, (max-width: 1200px) 1200px, 100vw" sizes="(max-width: 540px) 540px, (max-width: 768px) 768px, (max-width: 980px) 68px, (max-width: 1200px) 1200px, 100vw"
                 />
                 <div className="container">
                     <div className="row align-items-end">

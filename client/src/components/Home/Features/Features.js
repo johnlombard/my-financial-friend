@@ -10,7 +10,7 @@ const styles = {
     imgCol: {
         height: "75%",
         width: "100%",
-    }
+    },
 
 };
 
@@ -23,9 +23,9 @@ function Features(props) {
         <div className="container-fluid">
             <div className="row">
                 <div className="col-md p-0">
-                    <div  style={styles.introduction} className="features">
+                    <div style={styles.introduction} className="features">
                         <img style={styles.imgCol} src={budget} alt="Budget" />
-                        <p>My Financial Friend is the web application to track your stock portfolio! </p>
+                        <p className="toShow">My Financial Friend is the web application to track your stock portfolio! </p>
 
                     </div>
                 </div>
@@ -36,7 +36,7 @@ function Features(props) {
                     </div>
                 </div>
                 <div className="col-md p-0">
-                    <div style={styles.introduction} className="features">
+                    <div  style={styles.introduction} className="features">
                         <img style={styles.imgCol} src={nyc} alt="Net Worth Tracker" />
                         <p>Coming Soon! Networth Calculator </p>
 
