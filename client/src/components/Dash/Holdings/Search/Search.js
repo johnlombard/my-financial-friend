@@ -4,23 +4,23 @@ import React from 'react';
 
 export function Input(props) {
     return (
-        <input className="form-inline" {...props} />  
+        <input className="form" {...props} />  
     );
   }
 
 export function FormBtn(props) {
   return (
-    <button {...props} className="btn btn-success">Submit
+    <button {...props} className="btn btn-success ">Submit
     </button>
   );
 }
 
 export function AddQuantityToHoldingsForm(props) {
   return (
-    <div className="form">
+  
    
       <input type="number" name="quantity" min="1" className="form" {...props} />
-    </div>
+   
   );
 }
 

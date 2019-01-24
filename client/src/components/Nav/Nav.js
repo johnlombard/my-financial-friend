@@ -41,7 +41,7 @@ const Nav = props => (
                 </div>
             </div>
         </nav>
-        <h5 className="text-success navbar-text " >{props.state.loggedIn ? (`Welcome ${props.state.username}`) : "Please Sign in or Get Started"}</h5>
+        <h3 className="text-success navbar-text " >{props.state.loggedIn ? (`Welcome ${props.state.username}`) : "Please Sign in or Get Started"}</h3>
     </header >
 );
 export default Nav;

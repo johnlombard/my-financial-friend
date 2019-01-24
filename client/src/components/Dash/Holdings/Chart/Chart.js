@@ -25,7 +25,6 @@ class Chart extends React.Component {
         return (
             <div className="userChart">
                 <Pie/>
-                <button onClick={this.handleClick}>CHART STATE</button>
             </div>
         );
     }

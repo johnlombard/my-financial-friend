@@ -8,11 +8,21 @@ import Chart from './Chart'
 
 
 
-// const styles = {
-//   Holdings: {
-//     backgroundColor: "red"
-//   },
-// };
+const styles = {
+  searchForm: {
+    margin: 15
+  },
+  chartRow: {
+    backgroundColor: "rgb(53, 58, 64)",
+    
+    paddingBottom: 100
+  },
+  chartTitle: {
+    color: "rgb(53, 58, 64)",
+    margin: 15,
+  },
+
+};
 
 // TODO:
 // -2 decimal places 
@@ -152,10 +162,10 @@ class Holdings extends Component {
   // searchChange is currently a STRING*******
   percentageColor = (props) => {
     if (this.state.searchChange.includes("-")) {
-      this.setState({bgColor: 'red'})
+      this.setState({ bgColor: 'red' })
       // alert("negative")
     } else {
-      this.setState({bgColor: 'green'})
+      this.setState({ bgColor: 'green' })
       // alert("posotive")
     }
   }
@@ -177,7 +187,7 @@ class Holdings extends Component {
     ];
 
     // let apiHolding = 
-      
+
     //   this.state.apiHoldings
     //   // this.state.apiCompanyName,
     //   // this.state.apiSymbol,
@@ -190,70 +200,82 @@ class Holdings extends Component {
 
 
     return (
-      <div style={{ backgroundColor: this.state.bgColor }} className="Holding">
+      <div className="Holding">
         {/* ---------------------Search BEGINs------------------------ */}
-        <form >
-          <Input
-            value={this.state.StockTicker}
-            onChange={this.handleStockChange}
-            name="StockTicker"
-            placeholder="Enter Ticker"
-          />
-          <FormBtn
-            // disabled={!(this.state.author && this.state.title)}
-            onClick={this.handleStockSearch}
-          ></FormBtn>
-          {/* <button onClick={this.loadAPIHoldings}>LOAD API HOLDINGS</button> */}
-        </form>
+        <div className="row">
+          <div className="col-6" style={{ backgroundColor: this.state.bgColor, borderRadius: 5 }}>
+            <form style={styles.searchForm} className="row justify-content-md-center">
+              <Input
+                className="col-3"
+                value={this.state.StockTicker}
+                onChange={this.handleStockChange}
+                name="StockTicker"
+                placeholder="Enter Ticker"
+              />
+              <FormBtn
+                // disabled={!(this.state.author && this.state.title)}
+                onClick={this.handleStockSearch}
+              ></FormBtn>
+              {/* <button onClick={this.loadAPIHoldings}>LOAD API HOLDINGS</button> */}
+            </form>
 
-        
-        {/* CHANGE TO MODAL MAP THROUGH */}
-        <h1>Company: {searchResults[0]}</h1>
-        <h1>Ticker: {searchResults[1]}</h1>
-        <h1>Price: {searchResults[2]}</h1>
-        <h1>Price Change: {searchResults[3]}</h1>
-        <h1>52 Week High: {searchResults[4]}</h1>
-        <h1>52 Week Low: {searchResults[5]}</h1>
-        <h1>YTD Change: {searchResults[6]}</h1>
+            {/* CHANGE TO MODAL MAP THROUGH */}
+            <div className=" searchResults">
+              <h3>Company: {searchResults[0]}</h3>
+              <h3>Ticker: {searchResults[1]}</h3>
+              <h3>Price: {searchResults[2]}</h3>
+              <h3>Price Change: {searchResults[3]}</h3>
+              <h3>52 Week High: {searchResults[4]}</h3>
+              <h3>52 Week Low: {searchResults[5]}</h3>
+              <h3>YTD Change: {searchResults[6]}</h3>
+            </div>
 
-        <AddQuantityToHoldingsForm value={this.state.AddedQuantity} onChange={this.handleStockChange} />
-        <AddQuantityToHoldingsButton onClick={this.addHoldingToDb} />
-        
-        {/* ---------------------Search ENDS------------------------ */}
-       
-
-        {/* ---------------------USER HOLDINGS BEGIN ------------------------ */}
-        <List> {this.state.holdings.map(holding => (
-          <ListItem key={holding._id}>
-            <h1 href={"/holdings/" + holding._id}>
-              <strong>
-                You own {holding.quantity} shares of {holding.ticker}
-                <br />
-                {/* This position is worth {this.state.apiHoldings} */}
-                {/* {Number(holding.quantity * apiHolding[2]).toFixed(2)} */}
-              </strong>
-            </h1>
-            {/* MAP THROUGH THIS  Holding QTY * PRICE WILL NOT LOAD UNTIL HOLDINGS ARE LOADED*/}
-          </ListItem>
-
-        ))}
+            <div style={styles.searchForm} className="row justify-content-md-center">
+              <AddQuantityToHoldingsForm  placeholder="How Many Shares?" value={this.state.AddedQuantity} onChange={this.handleStockChange} />
+              <AddQuantityToHoldingsButton onClick={this.addHoldingToDb} />
+            </div>
+          </div>
+          {/* ---------------------Search ENDS------------------------ */}
 
 
-        </List>
+          {/* ---------------------USER HOLDINGS BEGIN ------------------------ */}
+
+          <div className="col-6">
+            <List> {this.state.holdings.map(holding => (
+              <ListItem key={holding._id}>
+                <h3 href={"/holdings/" + holding._id}>
+                  <strong>
+                    {holding.quantity} shares of {holding.ticker}
+                    <br />
+                    {/* This position is worth {this.state.apiHoldings} */}
+                    {/* {Number(holding.quantity * apiHolding[2]).toFixed(2)} */}
+                  </strong>
+                </h3>
+                {/* MAP THROUGH THIS  Holding QTY * PRICE WILL NOT LOAD UNTIL HOLDINGS ARE LOADED*/}
+              </ListItem>
+            ))}
+            </List>
+          </div>
+        </div>
         {/* ---------------------USER HOLDINGS END ------------------------ */}
+        <div style={styles.chartRow} className="row chartRow">
+          <div className="col-12">
+            <h1 className="text-success" style={styles.chartTitle}> Your Portfolio: {console.log(this.state.holdings)}</h1>
+          </div>
+          {/* --------------------- HOLDINGS CHART BEGIN ------------------------ */}
 
-        <h1> Your Portfolio {console.log(this.state.holdings)}</h1>
+          <div  className="col-12">
+            <Chart holdings={this.state.holdings} />
+          </div>
+          {/* --------------------- HOLDINGS CHART END ------------------------ */}
 
-        {/* --------------------- HOLDINGS CHART BEGIN ------------------------ */}
-        <Chart holdings={this.state.holdings} />
-        {/* --------------------- HOLDINGS CHART END ------------------------ */}
-
+        </div>
 
 
 
 
         {/* <button onClick={this.percentageColor}>color</button> */}
-        <button onClick={this.handleSeeState}>SEE STATE</button>
+        {/* <button onClick={this.handleSeeState}>SEE STATE</button> */}
 
       </div>
     );
