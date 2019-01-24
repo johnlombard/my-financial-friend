@@ -122,23 +122,25 @@ app.get("/holdings/:id", function (req, res) {
     .catch(err => res.status(422).json(err));
 
   // res.json({routeHit: true})
-})
+});
 
 
 
 
 // Serve up static assets (usually on heroku)
-app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, 'build')));
-  // app.use(express.static("client/build"));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+};
 
 
 // Send every request to the React app
 // Define any API routes before this runs
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, 'build',"index.html"));
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 app.listen(PORT, function () {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
+app.use(express.static(path.join(__dirname, '/movies-client/dist')));
+app.use(express.static(path.join(__dirname, '/movies-client/dist/movies-client')));
