@@ -2,6 +2,11 @@ import React from 'react';
 
 import Pie from './Pie'
 class Chart extends React.Component {
+
+    handleClick = event => {
+        event.preventDefault();
+        console.log("Chart STate" + this.holdings)
+      };
     render() {
 
 
@@ -20,6 +25,7 @@ class Chart extends React.Component {
         return (
             <div className="userChart">
                 <Pie/>
+                <button onClick={this.handleClick}>CHART STATE</button>
             </div>
         );
     }

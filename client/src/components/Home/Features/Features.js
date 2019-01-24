@@ -11,31 +11,35 @@ const styles = {
         height: "75%",
         width: "100%",
     }
-    
-};
-function Features(props) {
-    return (
 
+};
+
+
+
+
+function Features(props) {
+   
+    return (
         <div className="container-fluid">
             <div className="row">
                 <div className="col-md p-0">
-                    <div style={styles.introduction} className="features">
-                    <img style={styles.imgCol} src={budget} alt="Budget"/>
-                    <p>My Financial Friend is the web application to track your portfolio, net worth, and a monthly budget </p>
+                    <div  style={styles.introduction} className="features">
+                        <img style={styles.imgCol} src={budget} alt="Budget" />
+                        <p>My Financial Friend is the web application to track your stock portfolio! </p>
 
                     </div>
                 </div>
                 <div className="col-md p-0">
                     <div style={styles.introduction} className="features">
-                    <img style={styles.imgCol} src={portfolio} alt="Portfolio Tracker" />
-                       <p>My Financial Friend is the web application to track your portfolio, net worth, and a monthly budget </p>
+                        <img style={styles.imgCol} src={portfolio} alt="Portfolio Tracker" />
+                        <p>Coming Soon! Budget Calculator </p>
                     </div>
                 </div>
                 <div className="col-md p-0">
                     <div style={styles.introduction} className="features">
-                    <img style={styles.imgCol} src={nyc} alt="Net Worth Tracker"/>
-                    <p>My Financial Friend is the web application to track your portfolio, net worth, and a monthly budget </p>
-               
+                        <img style={styles.imgCol} src={nyc} alt="Net Worth Tracker" />
+                        <p>Coming Soon! Networth Calculator </p>
+
                     </div>
                 </div>
             </div>

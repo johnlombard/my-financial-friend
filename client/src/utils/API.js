@@ -3,11 +3,11 @@ import axios from "axios";
 export default {
   // Gets all users
   getUsers: function() {
-    return axios.get("api/users");
+    return axios.get("api/users/users");
   },
   // Gets the user with the given id
   getUser: function(id) {
-    return axios.get("api/users/" + id);
+    return axios.get("api/users/users/" + id);
   },
   // Deletes the user with the given id
   deleteUser: function(id) {
@@ -21,9 +21,9 @@ export default {
     return axios.get("api/holdings/holdings")
   },
   getHolding: function(id) {
-    return axios.get("api/holdings/" + id);
+    return axios.get("api/holdings/holdings/" + id);
   },
-  saveHolding: function(id) {
-    return axios.post("api/holdings/holdings/" + id)
+  saveHolding: function(holdingData) {
+    return axios.post("api/holdings/holdings/", holdingData)
   }
 };

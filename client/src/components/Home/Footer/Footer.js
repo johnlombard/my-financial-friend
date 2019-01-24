@@ -14,12 +14,26 @@ function Footer(props) {
     return (<div style={styles.footer} className="footer">
         <div className="card">
             <div className="card-header">
-                Featured
+                
      </div>
             <div className="card-body">
-                <h5 className="card-title">Special title treatment</h5>
+                <h5 className="card-title">Site by John Lombard</h5>
+
+                <ul className="list-inline social-buttons">
+              <li className="list-inline-item">
+                <a target = "_blank" rel="noopener noreferrer" href="https://github.com/johnlombard">
+                  <i className="fab fa-github"></i>
+                </a>
+              </li>
+     
+              <li className="list-inline-item">
+                <a target = "_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/johnlombard1996/">
+                  <i className="fab fa-linkedin-in"></i>
+                </a>
+              </li>
+              </ul>
                 <p className="card-text">Photos by Vladislav Reshetnyak, Tatiana Fet, and Lorenzo Cafaro from Pexels</p>
-                <a href="/test" className="btn btn-success">Go somewhere</a>
+                
             </div>
         </div>
 

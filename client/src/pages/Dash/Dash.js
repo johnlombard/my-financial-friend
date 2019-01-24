@@ -14,14 +14,10 @@ class Dash extends Component {
     };
 
 
-handleClick = (event) => {
-    event.preventDefault();
-    console.log(this.props);
-}
+
 render() {
     return (
         <div className="dash">
-            <button onClick={this.handleClick}></button>
             <Holdings
             // data={this.state.holdings}
             />
