@@ -7,9 +7,6 @@ import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Dash from "./pages/Dash";
 
-
-
-
 const styles = {
   app: {
     fontFamily: "'Josefin Sans', sans-serif"
@@ -17,12 +14,11 @@ const styles = {
 };
 
 class App extends Component {
-
   state = {
     loggedIn: false,
   };
 
-
+// Logs the user in therefore rendering the dash
   handleLogin = (event) => {
     event.preventDefault();
     console.log("Login clicked!");
@@ -39,6 +35,8 @@ class App extends Component {
         console.log(error);
       })
   }
+
+  // Changes the user name and password state
   handleFormLogin = (event) => {
     const { name, value } = event.target;
     this.setState({
@@ -46,6 +44,7 @@ class App extends Component {
     });
   }
 
+  // Logs out user, sets state
   handleLogout = (event) => {
     event.preventDefault();
     console.log("Log out clicked!");
@@ -73,12 +72,6 @@ class App extends Component {
       });
   };
 
-  // FORM SUBMIT
-  handleSubmit = event => {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
-  };
-
   // Changing the state
   handleChange = event => {
     this.setState({ value: event.target.value });
@@ -91,18 +84,12 @@ class App extends Component {
       return <Home />;
     } else {
       return (
-      // this.loadHoldings(),
+      this.loadHoldings(),
       // this.loadAPIHoldings(),
       <Dash/>
       )
     }
   };
-
-  // Can remove this once sign up form is completed TODO
-  handleClick = (event) => {
-    event.preventDefault();
-    console.log(this.state);
-  }
 
   // TRYING TO LOAD DATA FROM MONGO
   loadHoldings = () => {
@@ -111,22 +98,7 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-
-  // handleNewUserSubmit = event => {
-  //   event.preventDefault();
-  //   if (this.state.newUser && this.state.newPassword) {
-  //     API.saveUser({
-  //       title: this.state.title,
-  //       author: this.state.author,
-  //       synopsis: this.state.synopsis
-  //     })
-  //       .then(res => this.loadBooks())
-  //       .catch(err => console.log(err));
-  //   }
-  // };
-
-
-  render(props) {
+  render() {
     return (
       <div style={styles.app} className="App">
         <Nav
@@ -134,23 +106,11 @@ class App extends Component {
           state={this.state}
           handleLogin={this.handleLogin}
           handleLogout={this.handleLogout}
-          handleClick={this.handleClick}
           handleFormLogin={this.handleFormLogin}
         />
 
         {/* If Logged in, display User Dash */}
         {this.renderPage()}
-
-
-
-        {/* Creating a new user Form */}
-        {/* <form className="signin">
-          <input placeholder="Create New User Name" name="newUserName"  onChange={this.handleFormLogin} className="form" />
-          <input placeholder="Password" name="newPassword"  onChange={this.handleFormLogin} className="form" />
-          <button onClick={this.handleClick}>SIGN UP</button>
-        </form> */}
-
-
       </div>
     );
   }

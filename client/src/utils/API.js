@@ -25,5 +25,8 @@ export default {
   },
   saveHolding: function(holdingData) {
     return axios.post("api/holdings/holdings/", holdingData)
+  },
+  deleteHolding: function(id) {
+    return axios.delete("/api/holdings/holdings/" + id);
   }
 };

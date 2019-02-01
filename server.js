@@ -66,7 +66,7 @@ app.use(routes);
 // Getting Users
 app.get("/users", function (req, res) {
   console.log("All holdings route was hit!");
-  // Getting all holdings and send them back in a json blob
+  // Getting all holdings and sending them back in a json blob
   db.User
     .find(req.query)
     .then(dbModel => res.json(dbModel))
@@ -77,8 +77,8 @@ app.get("/users", function (req, res) {
 
 // Getting Users
 app.get("/users/:id", function (req, res) {
-  console.log("All holdings route was hit!");
-  // Getting all holdings and send them back in a json blob
+  console.log("User ID route was hit!");
+  // GettingUser with ID and sending them back in a json blob
   db.User
     .findById(req.params.id)
     .then(dbModel => res.json(dbModel))
@@ -97,9 +97,6 @@ app.get("/holdings", function (req, res) {
 
   // res.json({routeHit: true})
 })
-
-
-
 
 // ******************************
 app.post("/holdings", function (req, res) {

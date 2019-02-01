@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-// import Budget from './Budget';
-import Holdings from '../../components/Dash/Holdings';
+import Budget from '../../components/Dash/Budget';
+import Compounding from '../../components/Dash/Compounding'
+import Portfolio from '../../components/Dash/Portfolio'
 // import API from '../../utils/API'
 // import Networth from './Networth';
 
@@ -15,15 +16,24 @@ class Dash extends Component {
 
 
 
-render() {
-    return (
-        <div className="dash">
-            <Holdings
-            // data={this.state.holdings}
-            />
-        </div>
-    );
-}
+    render() {
+        return (
+            <div className="dash">
+            <div className="container">
+            <div className="row">
+            <Portfolio/>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+                <div className="row">
+                <div className="col-6"><Compounding /></div>
+                    <div className="col-6"><Budget /></div>
+                </div>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Dash;

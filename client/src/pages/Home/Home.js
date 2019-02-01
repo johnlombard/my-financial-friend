@@ -7,19 +7,15 @@ import Features from '../../components/Home/Features';
 
   
 class Home extends Component {
-    state = {
-        isHovered: false,
-      };
+    
 
     render() {
         return (
             <div className="home">
                 <Header />
                 <Introduction/>
-                <Features isHovered={this.state.isHovered}/>
+                <Features />
                 <Footer/>
-
-               
             </div>
         );
     }
