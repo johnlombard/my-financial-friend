@@ -52,32 +52,31 @@ class Compounding extends React.Component {
 
     render() {
         return (
-            <div className="row">
-            <div className="col-8">
-                <form onSubmit={this.calculate}>
-                    <label>
-                        Amount:
-              <input name="amount" type="number" value={this.state.amount} onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        Rate (%):
-              <input name="rate" type="number" value={this.state.rate} onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        No. of Years:
-              <input name="years" min="0" type="number" value={this.state.years} onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        Compounding Times Per Year:
-              <input name="compounding" min="0" type="number" value={this.state.compounding} onChange={this.handleChange} />
-                    </label>
-                    <input type="submit" value="Submit" />
-                </form>
-
-                <h3>Total Amount: {this.state.result}</h3>
-                <h3>Interest: {this.state.interest}</h3>
+            <div className="">
+                <h1>Compound Interest Calculator</h1>
+                <div className="row">
+                    {/* Input form */}
+                    <div className="col-lg-9">
+                        <form onSubmit={this.calculate}>
+                            <label>Amount:</label>
+                            <input name="amount" type="number" value={this.state.amount} onChange={this.handleChange} />
+                            <label>Rate (%):</label>
+                            <input name="rate" type="number" value={this.state.rate} onChange={this.handleChange} />
+                            <label>No. of Years:</label>
+                            <input name="years" min="0" type="number" value={this.state.years} onChange={this.handleChange} />
+                            <label>Compounding Times Per Year:</label>
+                            <input name="compounding" min="0" type="number" value={this.state.compounding} onChange={this.handleChange} />
+                            <input className="btn btn-success" type="submit" value="Submit" />
+                        </form>
+                    </div>
+                    {/* Interest and Total Amount Col */}
+                    <div className="col-lg-3">
+                        <h3>Total Amount: {this.state.result}</h3>
+                        <h3>Interest: {this.state.interest}</h3>
+                    </div>
                 </div>
             </div>
+
         );
     }
 }

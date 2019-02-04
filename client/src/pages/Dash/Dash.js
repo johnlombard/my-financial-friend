@@ -17,19 +17,20 @@ class Dash extends Component {
 
 
     render() {
+        const styles = {
+            compounding: {
+                backgroundColor: 'rgb(53, 58, 64)',
+                color:'rgb(75, 166, 69)'
+            }
+        }
         return (
             <div className="dash">
-            <div className="container">
-            <div className="row">
-            <Portfolio/>
-            </div>
-            <br/>
-            <br/>
-            <br/>
-                <div className="row">
-                <div className="col-6"><Compounding /></div>
-                    <div className="col-6"><Budget /></div>
-                </div>
+                <div className="container">
+                    <Portfolio />
+                    <div className="row">
+                        <div style={styles.compounding} className="col-6"><Compounding /></div>
+                        <div className="col-6"><Budget /></div>
+                    </div>
                 </div>
             </div>
         );

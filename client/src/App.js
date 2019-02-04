@@ -9,7 +9,7 @@ import Dash from "./pages/Dash";
 
 const styles = {
   app: {
-    fontFamily: "'Josefin Sans', sans-serif"
+    fontFamily: 'Noto Serif, SC serif'
   },
 };
 

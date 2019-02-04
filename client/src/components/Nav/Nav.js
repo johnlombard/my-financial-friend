@@ -6,10 +6,12 @@ const styles = {
         marginRight: 15
     },
     signInBtn: {
-        marginLeft: 35
+        marginLeft: 35,
+        marginRight: 5
     },
     welcome: {
-        margin: "auto"
+        margin: "auto",
+        fontSize: "2.5rem"
     }
 };
 
@@ -34,7 +36,7 @@ const Nav = props => (
                             {!props.state.loggedIn ?
                                 (<button className="nav-link btn btn-success float-right" style={styles.signInBtn} onClick={props.handleLogin}> Sign In</button>) : ""}
                             {props.state.loggedIn ?
-                                (<button className="nav-link btn btn-success float-right" onClick={props.handleLogout}>Sign Out</button>) : ""}
+                                (<button className="nav-link btn btn-success float-right" style={styles.signInBtn} onClick={props.handleLogout}>Sign Out</button>) : ""}
                         </li>
                         <li className="nav-item">
                             {/* TO DO OPEN MODULE TO SIGN UP */}

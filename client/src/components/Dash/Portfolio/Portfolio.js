@@ -5,6 +5,7 @@ import API from '../../../utils/API';
 import DeleteBtn from "./DeleteBtn";
 import { Input, FormBtn, AddQuantityToHoldingsForm, AddQuantityToHoldingsButton } from './Search'
 import { List, ListItem } from './List';
+import SeeBtn from './SeeBtn';
 
 
 class Portfolio extends Component {
@@ -12,6 +13,7 @@ class Portfolio extends Component {
         StockTicker: "", //What is typed in input line
         stock: "", //Response from external API
         holdings: [],
+        bgColor: "gray"
     }
     componentDidMount() {
         this.loadDBHoldings();
@@ -92,11 +94,24 @@ class Portfolio extends Component {
     // Delete Holding from DB
     deleteHolding = (id) => {
         API.deleteHolding(id)
-        .then(res => this.loadDBHoldings())
-        .catch(err => console.log(err));
+            .then(res => this.loadDBHoldings())
+            .catch(err => console.log(err));
     }
 
+    seeCurrentValue = (event) => {
+        event.preventDefault();
+        console.log(this.state.holdings)
+        // axios
+        //     .get("https://api.iextrading.com/1.0/stock/" + this.holding.ticker + "/quote")
+        //     .then((response) => {
+        //         console.log(`********************** ${response.data}`);
+        //         // companyName, symbol, latestPrice, change, week52High "week52Low" "ytdChange": 
 
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+    }
     render() {
         let searchResults = [
             this.state.searchCompanyName,
@@ -106,20 +121,37 @@ class Portfolio extends Component {
             this.state.searchWeek52High,
             this.state.searchWeek52Low,
             this.state.searchYtdChange
-        ];
 
+        ];
+        const styles = {
+            search: {
+                backgroundColor: this.state.bgColor,
+                borderRadius: 5
+            },
+            form: {
+                marginTop: 5
+            },
+            addToDBForm: {
+                marginRight: 5
+            }
+        }
         return (
             <div className="portfolio">
-                <div >            
-                    <form className="justify-content-md-center">
+            <div className="row">
+                {/* Stock Search */}
+                
+                <div style={styles.search} className="search col-lg-6 col-md-12">
+                    <h1>Enter a Stock Ticker</h1>
+                    <hr/>
+                    <form style={styles.form} className="form-row justify-content-md-center">
                         <Input
-                            className="form-control"
+                            className="form-control col-6"
                             value={this.state.StockTicker}
                             onChange={this.handleStockChange}
                             name="StockTicker"
                             placeholder="Enter Ticker"
                         />
-                        <FormBtn onClick={this.handleStockSearch}></FormBtn>
+                        <FormBtn className="col-6" onClick={this.handleStockSearch}></FormBtn>
                     </form>
                     <div className="col-lg-12 col-md-12">
                         <h3>Company: {searchResults[0]}</h3>
@@ -130,13 +162,14 @@ class Portfolio extends Component {
                         <h3>52 Week Low: {searchResults[5]}</h3>
                         <h3>YTD Change: {searchResults[6]}</h3>
                     </div>
-                    <AddQuantityToHoldingsForm  placeholder="How Many Shares?" value={this.state.AddedQuantity} onChange={this.handleStockChange} />
-                    <AddQuantityToHoldingsButton onClick={this.addHoldingToDb}/>
+                    <div className="row justify-content-md-center">
+                    <AddQuantityToHoldingsForm style={styles.addToDBForm} className="form-control col-4" placeholder="How Many Shares?" value={this.state.AddedQuantity} onChange={this.handleStockChange} />
+                    <AddQuantityToHoldingsButton className="col-4"  onClick={this.addHoldingToDb} />
+                    </div>
                 </div>
-                <br />
 
                 {/* List Through The DB */}
-                <div className="row">
+                <div className="col-lg-6 col-md-12">
                     <List> {this.state.holdings.map(holding => (
                         <ListItem key={holding._id}>
                             <h3 href={"/holdings/" + holding._id}>
@@ -146,17 +179,15 @@ class Portfolio extends Component {
                                     {/* This position is worth {this.state.apiHoldings} */}
                                     {/* {Number(holding.quantity * apiHolding[2]).toFixed(2)} */}
                                 </strong>
-                                <DeleteBtn onClick={() => this.deleteHolding(holding._id)}/>
+                                <SeeBtn onClick={this.seeCurrentValue} />
+                                <DeleteBtn onClick={() => this.deleteHolding(holding._id)} />
                             </h3>
                             {/* MAP THROUGH THIS  Holding QTY * PRICE WILL NOT LOAD UNTIL HOLDINGS ARE LOADED*/}
-                           
                         </ListItem>
                     ))}
                     </List>
                 </div>
-
-
-                
+                </div>
             </div>
         );
     }
@@ -227,8 +258,6 @@ export default Portfolio;
 
 
 
-                    //     // TODO Change percentages to be 2 decimal
-                    //     // Change positive and negative to red or green
 
 
 

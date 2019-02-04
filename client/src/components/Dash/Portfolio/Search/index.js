@@ -27,7 +27,7 @@ export function AddQuantityToHoldingsForm(props) {
 
 export function AddQuantityToHoldingsButton(props) {
   return (
-      <button type="submit" {...props} className="btn btn-success">Add to your Portfolio
+      <button type="submit" {...props} className="btn btn-success col-4">Add to your Portfolio
      </button>
   );
 }
