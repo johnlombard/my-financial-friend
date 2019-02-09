@@ -22,7 +22,6 @@ app.use(session({ secret: "finfriend", resave: true, saveUninitialized: true }))
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 //Login post route
 // TODO: REMOVE OLD ROUTE
 app.post("/login", passport.authenticate("local"), (req, res) => {
@@ -83,7 +82,6 @@ app.get("/users/:id", function (req, res) {
     .findById(req.params.id)
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
-
   // res.json({routeHit: true})
 })
 
@@ -117,18 +115,13 @@ app.get("/holdings/:id", function (req, res) {
     .findById(req.params.id)
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
-
   // res.json({routeHit: true})
 });
-
-
-
 
 // Serve up static assets (usually on heroku)
 // if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 // };
-
 
 // Send every request to the React app
 // Define any API routes before this runs

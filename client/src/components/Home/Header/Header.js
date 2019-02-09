@@ -22,15 +22,15 @@ const styles = {
 
 };
 
-
-
 class Header extends React.Component {
     render() {
         return (
                 <div style={styles.introRow} className="row no-gutters">
+                        {/* Image */}
                         <img style={styles.introImg}   src={IntroImg} alt="Dollar"/>
                         <div className="container">
                             <div className="row align-items-end">
+                                {/* Image Description */}
                                 <div className="col" style={styles.introImgText}>
                                     <h2 style={styles.introImgTextPosition}>“An investment in knowledge always pays the best interest.”</h2>
                                 </div>

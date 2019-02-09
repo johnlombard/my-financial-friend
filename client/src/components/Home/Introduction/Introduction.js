@@ -4,8 +4,9 @@ const styles = {
        marginTop: 20,
        marginBottom: 20
     },
-    
 };
+
+// Description of app on Homepage
 class Introduction extends React.Component {
     render() {
         return (

@@ -55,18 +55,3 @@ db.User
         console.error(err);
         process.exit(1);
     });
-
-
-
-
-
-
-// const addHolding = (user, holding) => {
-//     // get the user
-//     // add the holding
-//     db.User.update({username: "Jawn"}, {$push: {holdings:[{ticker:aapl}, {quantity: 10}]}})
-
-//     // save the user
-// };
-
-// addHolding(,);

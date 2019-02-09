@@ -77,7 +77,6 @@ class App extends Component {
     this.setState({ value: event.target.value });
   }
 
-
   // If the user is not logged in HOME is displayed, If User IS logged in personal dash is displayed 
   renderPage = () => {
     if (this.state.loggedIn === false) {
@@ -108,7 +107,6 @@ class App extends Component {
           handleLogout={this.handleLogout}
           handleFormLogin={this.handleFormLogin}
         />
-
         {/* If Logged in, display User Dash */}
         {this.renderPage()}
       </div>

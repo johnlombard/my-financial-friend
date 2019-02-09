@@ -24,7 +24,7 @@ const Nav = props => (
             <div className="col-9">
                 <div className="collapse navbar-collapse float-right" id="navbarNav">
                     <ul className="navbar-nav float-right ">
-                        {/* SIGN IN FORm */}
+                        {/* Sign in form */}
                         {!props.state.loggedIn ?
                             (<form className="signin row">
                                 <input  style={styles.userNameInput} placeholder="UserName" name="usernameInput" value={props.usernameTest} onChange={props.handleFormLogin} className="form " />
@@ -32,7 +32,7 @@ const Nav = props => (
                             </form>) : ""}
 
                         <li className="nav-item">
-                            {/* IF Not logged in display log in button  */}
+                            {/* If Not logged in display log in button  */}
                             {!props.state.loggedIn ?
                                 (<button className="nav-link btn btn-success float-right" style={styles.signInBtn} onClick={props.handleLogin}> Sign In</button>) : ""}
                             {props.state.loggedIn ?

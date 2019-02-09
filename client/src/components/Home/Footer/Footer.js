@@ -13,7 +13,8 @@ const styles = {
         color: "black"
     }
 };
-function Footer(props) {
+
+function Footer() {
     return (<div style={styles.footer} className="footer">
         <div className="card">
             <div className="card-header">           
@@ -35,10 +36,8 @@ function Footer(props) {
               </li>
               </ul>
                 <p className="card-text">Photos by Vladislav Reshetnyak, Tatiana Fet, and Lorenzo Cafaro from Pexels</p>
-                
             </div>
         </div>
-
     </div>
     );
 };

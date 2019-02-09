@@ -29,7 +29,7 @@ class Budget extends React.Component {
     render() {
         return (
             <div>
-            <h1>Budget</h1>
+            <h1>Budget COMING SOON</h1>
             <Add onAdd={this.add}/>
             <Transaction transactions= {this.state.data}/>
             <Balance total={this.state.total}/>

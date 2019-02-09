@@ -30,7 +30,7 @@ const featureImages = [
     },
     {
         image: nyc,
-        text: `Net Worth Calculator`,
+        text: `Compound Interest Calculator`,
         height: 500,
         width: "100%",
         alt: "Track your net worth"
@@ -44,38 +44,13 @@ const featureImages = [
     },
 ];
 
-// const features = {
-//     change: {
-//         backgroundImage: `url(${budget})`
-//     }
-// }
-
 class Features extends React.Component {
     state = {
         isHovered: false,
     };
 
-    constructor(props) {
-        super(props);
-        this.handleMouseHover = this.handleMouseHover.bind(this);
-        this.state = {
-            isHovering: false,
-        };
-    }
-
-    handleMouseHover() {
-        this.setState(this.toggleHoverState);
-    }
-
-    toggleHoverState(state) {
-        return {
-            isHovering: !state.isHovering,
-        };
-    }
-
-
-
     render() {
+        // Maps through each feature image
         const imageRow = featureImages.map((featureImage) => {
             return (
                 <div className="col-lg-4 col-md-6 col-xs-12" >
@@ -87,7 +62,6 @@ class Features extends React.Component {
                                 </div>
                             </div>
                         </div>
-                    
                 </div>
             );
         });

@@ -12,18 +12,21 @@ class Add extends React.Component {
         this.handleChangeAmt = this.handleChangeAmt.bind(this);
     }
 
+    // Change state to description
     handleChangeDesc(e) {
         this.setState({
             description: e.target.value
         });
     }
 
+    // Change state to amount
     handleChangeAmt(e) {
         this.setState({
             amount: e.target.value
         });
     }
 
+    // Add New item to Budget
     add() {
         this.props.onAdd(this.state.description, this.state.amount)
     }

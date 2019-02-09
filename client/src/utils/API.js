@@ -17,15 +17,19 @@ export default {
   saveUser: function(userData) {
     return axios.post("api/users", userData);
   },
+  // Get all holdings
   getHoldings: function() {
     return axios.get("api/holdings/holdings")
   },
+  // Get individual holding
   getHolding: function(id) {
     return axios.get("api/holdings/holdings/" + id);
   },
+  // Save holding to DB
   saveHolding: function(holdingData) {
     return axios.post("api/holdings/holdings/", holdingData)
   },
+  // Remove holding
   deleteHolding: function(id) {
     return axios.delete("/api/holdings/holdings/" + id);
   }
