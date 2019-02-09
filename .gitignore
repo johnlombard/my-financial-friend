@@ -1,5 +1,4 @@
 node_modules
 src/*
 public/*
-client/build/static/css/*.map
-client/build/static/js/*.map
+client/build
