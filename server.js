@@ -11,6 +11,7 @@ var passport = require("./config/passport");
 
 //  middleware for parsing body on post request
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "client", "build")))
 app.use(express.json());
 
 //Connecting to the DB
@@ -126,8 +127,8 @@ app.get("/holdings/:id", function (req, res) {
 
 // Send every request to the React app
 // Define any API routes before this runs
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
 

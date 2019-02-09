@@ -1,5 +1,4 @@
-# See it live:
-https://afternoon-escarpment-65440.herokuapp.com/
+#My Financial Friend
 
 
 
