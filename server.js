@@ -14,7 +14,7 @@ app.use(express.json());
 
 //Connecting to the DB
 const mongoose = require("mongoose");
-mongoose.connect(MONGODB_URI || "mongodb://localhost/my-financial-friend");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/my-financial-friend");
 const db = require("./models");
 
 // Passport 
