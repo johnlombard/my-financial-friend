@@ -21,9 +21,6 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "d3": "^5.7.0",
-    "d3-scale": "^2.1.2",
-    "d3-shape": "^1.2.2",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "if-env": "^1.0.4",
@@ -31,7 +28,6 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "react": "^16.7.0",
-    "react-d3-donut": "^1.1.2",
     "react-dom": "^16.7.0",
     "reactstrap": "^7.1.0"
   }
