@@ -7,6 +7,9 @@ Use this log in information to test the application!
 Username: "admin"
 Password: "password"
 
+## See It Live
+
+https://my-fin-friend.herokuapp.com/
 
 
 
