@@ -8,6 +8,14 @@ Username: "admin"
 Password: "password"
 
 ## See It Live
+<<<<<<< HEAD
 https://my-fin-friend.herokuapp.com/
 
 
+=======
+
+https://my-fin-friend.herokuapp.com/
+
+
+
+>>>>>>> 84b64d3c36394e1a8f29a3ba717302145637952a
