@@ -80,7 +80,6 @@ class Portfolio extends Component {
 
     // Save Holding to DB
     addHoldingToDb = (event) => {
-        event.preventDefault();
         API.saveHolding({
             ticker: this.state.searchSymbol,
             quantity: this.state.quantity
@@ -96,9 +95,26 @@ class Portfolio extends Component {
     }
 
     // Hit API For Current value of Stock in DB
-    seeCurrentValue = (event) => {
-        event.preventDefault();
+    seeCurrentValue = () => {
         console.log(this.state.holdings)
+        console.log(this.state.holdings[0].quantity)
+        axios
+            .get("https://api.iextrading.com/1.0/stock/" + this.state.holdings[1].ticker + "/quote")
+            .then((response) => {
+                console.log(`${response.data}`);
+                // companyName, symbol, latestPrice, change, week52High "week52Low" "ytdChange": 
+                this.setState({
+                    searchCompanyName: response.data.companyName,
+                    searchSymbol: response.data.symbol,
+                    searchLatestPrice: Number(response.data.latestPrice).toFixed(2),
+                    searchChange: (Number(response.data.change).toFixed(2)),
+                    searchWeek52High: Number(response.data.week52High).toFixed(2),
+                    searchWeek52Low: Number(response.data.week52Low).toFixed(2),
+                    searchYtdChange: `${(Number(response.data.ytdChange).toFixed(2) * 100)}% `,
+                    dbWorth: `${parseInt(this.state.holdings[1].quantity) * Number(response.data.latestPrice).toFixed(2)}`
+                });
+                this.percentageColor()
+            })
     }
 
     render() {
@@ -109,9 +125,11 @@ class Portfolio extends Component {
             this.state.searchChange,
             this.state.searchWeek52High,
             this.state.searchWeek52Low,
-            this.state.searchYtdChange
-
+            this.state.searchYtdChange,
         ];
+
+        let dbWorth = this.state.dbWorth ;
+
         const styles = {
             search: {
                 backgroundColor: this.state.bgColor,
@@ -155,6 +173,8 @@ class Portfolio extends Component {
                             <h3>52 Week High: {searchResults[4]}</h3>
                             <h3>52 Week Low: {searchResults[5]}</h3>
                             <h3>YTD Change: {searchResults[6]}</h3>
+                            <br/>
+                            <h3>Position Worth: {dbWorth} </h3>
                         </div>
                         <div className="row justify-content-md-center">
                             <AddQuantityToHoldingsForm style={styles.addToDBForm} className="form-control col-4" placeholder="How Many Shares?" value={this.state.AddedQuantity} onChange={this.handleStockChange} />
